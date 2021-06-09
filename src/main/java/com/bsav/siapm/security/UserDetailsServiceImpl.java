@@ -1,6 +1,6 @@
 package com.bsav.siapm.security;
 
-import com.bsav.siapm.entities.User;
+import com.bsav.siapm.entities.UserDB;
 import com.bsav.siapm.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -23,7 +23,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     @Override
     @Transactional
     public UserDetails loadUserByUsername(String document) throws UsernameNotFoundException {
-        User user = userRepository.findByDocument(document)
+        UserDB user = userRepository.findByDocument(document)
                 .orElseThrow(() -> new UsernameNotFoundException("User not found with document: " + document));
 
         return UserDetailsImpl.build(user);
@@ -31,7 +31,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
     public List<UserDetails> getUsers() {
         List<UserDetails> details = new ArrayList<>();
-        List<User> users = userRepository.findAll();
+        List<UserDB> users = userRepository.findAll();
         users.forEach(u -> details.add(UserDetailsImpl.build(u)));
         return details;
     }

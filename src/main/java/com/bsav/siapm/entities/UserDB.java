@@ -4,9 +4,9 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 import javax.persistence.*;
-
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 import static com.bsav.siapm.entities.DatabaseConstants.DATABASE_SCHEMA;
 import static com.bsav.siapm.entities.DatabaseConstants.TABLE_USER;
@@ -14,15 +14,15 @@ import static com.bsav.siapm.entities.DatabaseConstants.TABLE_USER;
 @Data
 @Entity
 @Table(name = TABLE_USER, schema = DATABASE_SCHEMA)
-public class User implements Serializable {
+public class UserDB implements Serializable {
 
-    public static final String DOCUMENT  = "document";
-    public static final String EMAIL  = "email";
-    public static final String CODE  = "code";
-    public static final String PASSWORD  = "password";
-    public static final String CREATE_TIME  = "create_time";
-    public static final String ACTIVE  = "active";
-    public static final String ROLE  = "role";
+    public static final String DOCUMENT = "document";
+    public static final String EMAIL = "email";
+    public static final String CODE = "code";
+    public static final String PASSWORD = "password";
+    public static final String CREATE_TIME = "create_time";
+    public static final String ACTIVE = "active";
+    public static final String ROLE = "role";
 
 
     private static final long serialVersionUID = 1L;
@@ -49,9 +49,12 @@ public class User implements Serializable {
     private Boolean active;
 
     @EqualsAndHashCode.Exclude
-    @JoinColumn(name = ROLE, referencedColumnName = Role.ID)
+    @JoinColumn(name = ROLE, referencedColumnName = RoleDB.ID)
     @ManyToOne
-    private Role role;
+    private RoleDB role;
+
+    @OneToMany(mappedBy = GroupDB.ID)
+    private List<GroupDB> groups;
 
 
 }

@@ -1,6 +1,6 @@
 package com.bsav.siapm.security;
 
-import com.bsav.siapm.entities.User;
+import com.bsav.siapm.entities.UserDB;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -37,7 +37,7 @@ public class UserDetailsImpl implements UserDetails {
         this.authorities = authorities;
     }
 
-    public static UserDetails build(User user) {
+    public static UserDetails build(UserDB user) {
         List<GrantedAuthority> authorities = new ArrayList<>();
         authorities.add(new SimpleGrantedAuthority(user.getRole().getRole().name()));
 

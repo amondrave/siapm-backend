@@ -4,19 +4,19 @@ import com.bsav.siapm.utils.Constants;
 import lombok.Data;
 
 import javax.persistence.*;
-
 import java.io.Serializable;
 import java.util.List;
 
-import static com.bsav.siapm.entities.DatabaseConstants.*;
+import static com.bsav.siapm.entities.DatabaseConstants.DATABASE_SCHEMA;
+import static com.bsav.siapm.entities.DatabaseConstants.TABLE_ROLE;
 
 @Data
 @Entity
 @Table(name = TABLE_ROLE, schema = DATABASE_SCHEMA)
-public class Role implements Serializable {
+public class RoleDB implements Serializable {
 
-    public static final String ID  = "id";
-    public static final String ROLE  = "role";
+    public static final String ID = "id";
+    public static final String ROLE = "role";
 
     private static final long serialVersionUID = 1L;
 
@@ -29,7 +29,7 @@ public class Role implements Serializable {
     @Column(name = ROLE)
     private Constants.ERole role;
 
-    @OneToMany(mappedBy = User.ROLE)
-    private List<User> userList;
+    @OneToMany(mappedBy = UserDB.ROLE)
+    private List<UserDB> userList;
 
 }
