@@ -7,8 +7,7 @@ import java.util.List;
 
 @Data
 @AllArgsConstructor
-public class Group {
-    private String id;
-    private String period;
-    private List<Guideline> guidelines;
+public class Semester {
+    private int id;
+    private List<Subject> subjects;
 }

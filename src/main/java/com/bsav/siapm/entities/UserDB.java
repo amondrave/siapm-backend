@@ -1,6 +1,5 @@
 package com.bsav.siapm.entities;
 
-import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 import javax.persistence.*;
@@ -11,7 +10,6 @@ import java.util.List;
 import static com.bsav.siapm.entities.DatabaseConstants.DATABASE_SCHEMA;
 import static com.bsav.siapm.entities.DatabaseConstants.TABLE_USER;
 
-@Data
 @Entity
 @Table(name = TABLE_USER, schema = DATABASE_SCHEMA)
 public class UserDB implements Serializable {
@@ -56,5 +54,67 @@ public class UserDB implements Serializable {
     @OneToMany(mappedBy = GroupDB.ID)
     private List<GroupDB> groups;
 
+    public String getDocument() {
+        return document;
+    }
 
+    public void setDocument(String document) {
+        this.document = document;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
+
+    public Boolean getActive() {
+        return active;
+    }
+
+    public void setActive(Boolean active) {
+        this.active = active;
+    }
+
+    public RoleDB getRole() {
+        return role;
+    }
+
+    public void setRole(RoleDB role) {
+        this.role = role;
+    }
+
+    public List<GroupDB> getGroups() {
+        return groups;
+    }
+
+    public void setGroups(List<GroupDB> groups) {
+        this.groups = groups;
+    }
 }

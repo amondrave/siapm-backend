@@ -12,6 +12,6 @@ public class Pensum {
     private String code;
     private String career;
     private Boolean active;
-    private List<Subject> subjects;
+    private List<Semester> semesters;
 }
 

@@ -1,6 +1,5 @@
 package com.bsav.siapm.entities;
 
-import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 import javax.persistence.*;
@@ -10,7 +9,6 @@ import java.util.List;
 import static com.bsav.siapm.entities.DatabaseConstants.DATABASE_SCHEMA;
 import static com.bsav.siapm.entities.DatabaseConstants.TABLE_GROUP;
 
-@Data
 @Entity
 @Table(name = TABLE_GROUP, schema = DATABASE_SCHEMA)
 public class GroupDB implements Serializable {
@@ -42,4 +40,43 @@ public class GroupDB implements Serializable {
     @OneToMany(mappedBy = GuidelineDB.ID)
     private List<GuidelineDB> guidelines;
 
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getPeriod() {
+        return period;
+    }
+
+    public void setPeriod(String period) {
+        this.period = period;
+    }
+
+    public UserDB getProfessor() {
+        return professor;
+    }
+
+    public void setProfessor(UserDB professor) {
+        this.professor = professor;
+    }
+
+    public SubjectDB getSubject() {
+        return subject;
+    }
+
+    public void setSubject(SubjectDB subject) {
+        this.subject = subject;
+    }
+
+    public List<GuidelineDB> getGuidelines() {
+        return guidelines;
+    }
+
+    public void setGuidelines(List<GuidelineDB> guidelines) {
+        this.guidelines = guidelines;
+    }
 }

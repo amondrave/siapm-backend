@@ -1,6 +1,5 @@
 package com.bsav.siapm.entities;
 
-import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 import javax.persistence.*;
@@ -10,7 +9,6 @@ import java.util.Date;
 import static com.bsav.siapm.entities.DatabaseConstants.DATABASE_SCHEMA;
 import static com.bsav.siapm.entities.DatabaseConstants.TABLE_GUIDELINE;
 
-@Data
 @Entity
 @Table(name = TABLE_GUIDELINE, schema = DATABASE_SCHEMA)
 public class GuidelineDB implements Serializable {
@@ -43,5 +41,48 @@ public class GuidelineDB implements Serializable {
     @ManyToOne
     private GroupDB group;
 
+    public static String getID() {
+        return ID;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public Boolean getDone() {
+        return done;
+    }
+
+    public void setDone(Boolean done) {
+        this.done = done;
+    }
+
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
+
+    public GroupDB getGroup() {
+        return group;
+    }
+
+    public void setGroup(GroupDB group) {
+        this.group = group;
+    }
 }
 

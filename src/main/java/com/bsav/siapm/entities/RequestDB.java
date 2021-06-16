@@ -1,14 +1,11 @@
 package com.bsav.siapm.entities;
 
-import lombok.Data;
-
 import javax.persistence.*;
 import java.io.Serializable;
 
 import static com.bsav.siapm.entities.DatabaseConstants.DATABASE_SCHEMA;
 import static com.bsav.siapm.entities.DatabaseConstants.TABLE_REQUEST;
 
-@Data
 @Entity
 @Table(name = TABLE_REQUEST, schema = DATABASE_SCHEMA)
 public class RequestDB implements Serializable {
@@ -54,4 +51,75 @@ public class RequestDB implements Serializable {
     @Column(name = RECEIPT)
     private String receipt;
 
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getSurname() {
+        return surname;
+    }
+
+    public void setSurname(String surname) {
+        this.surname = surname;
+    }
+
+    public String getDocument() {
+        return document;
+    }
+
+    public void setDocument(String document) {
+        this.document = document;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public Boolean getGraduate() {
+        return graduate;
+    }
+
+    public void setGraduate(Boolean graduate) {
+        this.graduate = graduate;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
+
+    public String getCertificate() {
+        return certificate;
+    }
+
+    public void setCertificate(String certificate) {
+        this.certificate = certificate;
+    }
+
+    public String getReceipt() {
+        return receipt;
+    }
+
+    public void setReceipt(String receipt) {
+        this.receipt = receipt;
+    }
 }

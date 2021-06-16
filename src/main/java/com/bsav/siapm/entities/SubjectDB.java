@@ -1,6 +1,5 @@
 package com.bsav.siapm.entities;
 
-import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 import javax.persistence.*;
@@ -10,7 +9,6 @@ import java.util.List;
 import static com.bsav.siapm.entities.DatabaseConstants.DATABASE_SCHEMA;
 import static com.bsav.siapm.entities.DatabaseConstants.TABLE_SUBJECT;
 
-@Data
 @Entity
 @Table(name = TABLE_SUBJECT, schema = DATABASE_SCHEMA)
 public class SubjectDB implements Serializable {
@@ -51,7 +49,7 @@ public class SubjectDB implements Serializable {
 
     @EqualsAndHashCode.Exclude
     @JoinColumn(name = PENSUM, referencedColumnName = PensumDB.CODE)
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private PensumDB pensum;
 
     @OneToMany(mappedBy = MicrocurriculumDB.ID)
@@ -60,5 +58,84 @@ public class SubjectDB implements Serializable {
     @OneToMany(mappedBy = GroupDB.ID)
     private List<GroupDB> groups;
 
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Integer getSemester() {
+        return semester;
+    }
+
+    public void setSemester(Integer semester) {
+        this.semester = semester;
+    }
+
+    public Integer getCredits() {
+        return credits;
+    }
+
+    public void setCredits(Integer credits) {
+        this.credits = credits;
+    }
+
+    public String getPrerequisites() {
+        return prerequisites;
+    }
+
+    public void setPrerequisites(String prerequisites) {
+        this.prerequisites = prerequisites;
+    }
+
+    public Integer getPrecredits() {
+        return precredits;
+    }
+
+    public void setPrecredits(Integer precredits) {
+        this.precredits = precredits;
+    }
+
+    public Boolean getElective() {
+        return elective;
+    }
+
+    public void setElective(Boolean elective) {
+        this.elective = elective;
+    }
+
+    public PensumDB getPensum() {
+        return pensum;
+    }
+
+    public void setPensum(PensumDB pensum) {
+        this.pensum = pensum;
+    }
+
+    public List<MicrocurriculumDB> getMicrocurriculums() {
+        return microcurriculums;
+    }
+
+    public void setMicrocurriculums(List<MicrocurriculumDB> microcurriculums) {
+        this.microcurriculums = microcurriculums;
+    }
+
+    public List<GroupDB> getGroups() {
+        return groups;
+    }
+
+    public void setGroups(List<GroupDB> groups) {
+        this.groups = groups;
+    }
 }
 

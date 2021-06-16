@@ -1,13 +1,9 @@
 package com.bsav.siapm.utils;
 
-import lombok.Data;
-
 public final class SiapmException extends Exception {
     private static final long serialVersionUID = 1L;
-
-    private ReturnMessage message = null;
-
     private static final String nullMessage = "null parameter";
+    private ReturnMessage message = null;
 
     public SiapmException(final Throwable e, final ReturnMessage msg) {
         super(e);

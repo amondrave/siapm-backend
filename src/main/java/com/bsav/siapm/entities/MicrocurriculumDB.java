@@ -1,6 +1,5 @@
 package com.bsav.siapm.entities;
 
-import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 import javax.persistence.*;
@@ -9,7 +8,6 @@ import java.io.Serializable;
 import static com.bsav.siapm.entities.DatabaseConstants.DATABASE_SCHEMA;
 import static com.bsav.siapm.entities.DatabaseConstants.TABLE_MICROCURRICULUM;
 
-@Data
 @Entity
 @Table(name = TABLE_MICROCURRICULUM, schema = DATABASE_SCHEMA)
 public class MicrocurriculumDB implements Serializable {
@@ -41,5 +39,48 @@ public class MicrocurriculumDB implements Serializable {
     @ManyToOne
     private SubjectDB subject;
 
+    public static String getID() {
+        return ID;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public String getBibliography() {
+        return bibliography;
+    }
+
+    public void setBibliography(String bibliography) {
+        this.bibliography = bibliography;
+    }
+
+    public String getDocument() {
+        return document;
+    }
+
+    public void setDocument(String document) {
+        this.document = document;
+    }
+
+    public SubjectDB getSubject() {
+        return subject;
+    }
+
+    public void setSubject(SubjectDB subject) {
+        this.subject = subject;
+    }
 }
 
