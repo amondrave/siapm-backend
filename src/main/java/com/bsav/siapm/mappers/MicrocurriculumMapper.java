@@ -4,7 +4,7 @@ import com.bsav.siapm.entities.MicrocurriculumDB;
 import com.bsav.siapm.model.Microcurriculum;
 
 public class MicrocurriculumMapper {
-    public static Microcurriculum toEntity(MicrocurriculumDB microcurriculumDB) {
+    public static Microcurriculum toModel(MicrocurriculumDB microcurriculumDB) {
         return new Microcurriculum(
                 microcurriculumDB.getId(),
                 microcurriculumDB.getContent(),

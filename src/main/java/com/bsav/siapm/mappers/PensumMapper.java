@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
 
 public class PensumMapper {
 
-    public static Pensum toEntity(PensumDB pensumDB) {
+    public static Pensum toModel(PensumDB pensumDB) {
         return new Pensum(
                 pensumDB.getCode(),
                 pensumDB.getCareer(),
@@ -26,12 +26,20 @@ public class PensumMapper {
         pensumDB.getSubjects().forEach(
                 subject -> {
                     int valor = subject.getSemester();
-                    if (semesters[valor] == null){
+                    if (semesters[valor] == null) {
                         semesters[valor] = new Semester(valor, new ArrayList<>());
-                        semesters[valor].getSubjects().add(SubjectMapper.toEntity(subject));
                     }
+                    semesters[valor].getSubjects().add(SubjectMapper.toModel(subject));
                 }
         );
         return Arrays.stream(semesters).filter(Objects::nonNull).collect(Collectors.toList());
+    }
+
+    public static PensumDB toEntity(Pensum pensum) {
+        return new PensumDB(
+                pensum.getCode(),
+                pensum.getCareer(),
+                pensum.getActive()
+        );
     }
 }

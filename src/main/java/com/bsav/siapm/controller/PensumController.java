@@ -1,16 +1,12 @@
 package com.bsav.siapm.controller;
 
+import com.bsav.siapm.model.Pensum;
 import com.bsav.siapm.service.interfaces.PensumService;
 import com.bsav.siapm.utils.SiapmException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import static org.springframework.web.bind.annotation.RequestMethod.*;
 
@@ -23,11 +19,21 @@ public class PensumController {
     private PensumService pensumService;
 
     @GetMapping("/active")
-    public ResponseEntity getPensum(){
+    public ResponseEntity getPensum() {
         try {
             return new ResponseEntity(pensumService.getActivePensum(), HttpStatus.OK);
         } catch (SiapmException e) {
             return new ResponseEntity(e.getReturnMessage(), HttpStatus.OK);
+        }
+    }
+
+    @PostMapping("/add")
+    public ResponseEntity addPensum(@RequestBody Pensum pensum) {
+        try {
+            pensumService.addPensum(pensum);
+            return new ResponseEntity(pensum, HttpStatus.OK);
+        } catch (SiapmException e) {
+            return new ResponseEntity(e.getReturnMessage(), HttpStatus.BAD_REQUEST);
         }
     }
 

@@ -7,4 +7,6 @@ public interface PensumService {
 
     Pensum getActivePensum() throws SiapmException;
 
+    void addPensum(Pensum pensum) throws SiapmException;
+
 }

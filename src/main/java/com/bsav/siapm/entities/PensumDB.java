@@ -31,6 +31,16 @@ public class PensumDB implements Serializable {
     @OneToMany(mappedBy = SubjectDB.PENSUM)
     private List<SubjectDB> subjects;
 
+    public PensumDB(String code, String career, Boolean active) {
+        this.code = code;
+        this.career = career;
+        this.active = active;
+    }
+
+    public PensumDB() {
+
+    }
+
     public String getCode() {
         return code;
     }

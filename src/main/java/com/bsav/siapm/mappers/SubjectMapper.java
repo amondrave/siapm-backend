@@ -12,7 +12,7 @@ import java.util.List;
 
 public class SubjectMapper {
 
-    public static Subject toEntity(SubjectDB subjectDB) {
+    public static Subject toModel(SubjectDB subjectDB) {
         return new Subject(
                 subjectDB.getCode(),
                 subjectDB.getName(),
@@ -28,7 +28,7 @@ public class SubjectMapper {
 
     private static List<Group> mapGroups(List<GroupDB> groups) {
         List<Group> gs = new ArrayList<>();
-        groups.forEach(g -> gs.add(GroupMapper.toEntity(g)));
+        groups.forEach(g -> gs.add(GroupMapper.toModel(g)));
         return gs;
     }
 

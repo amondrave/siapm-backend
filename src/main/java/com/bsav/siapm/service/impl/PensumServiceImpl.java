@@ -35,12 +35,25 @@ public class PensumServiceImpl implements PensumService {
 
         List<Pensum> pensums = new ArrayList<>();
 
-        pensumsDB.forEach(pensumDB -> pensums.add(PensumMapper.toEntity(pensumDB)));
+        pensumsDB.forEach(pensumDB -> pensums.add(PensumMapper.toModel(pensumDB)));
 
         if (pensums.size() < 1){
             throw new SiapmException(null, new ReturnMessage(HttpStatus.BAD_REQUEST.value(), "No hay pensum activo"));
         }
 
         return pensums.get(0);
+    }
+
+    @Override
+    public void addPensum(Pensum pensum) throws SiapmException {
+
+        try{
+            if (!pensumRepository.existsById(pensum.getCode())){
+                pensumRepository.save(PensumMapper.toEntity(pensum));
+            }
+        } catch (Exception e){
+            throw new SiapmException(e, new ReturnMessage(HttpStatus.BAD_REQUEST.value(), e.getMessage()));
+        }
+
     }
 }
