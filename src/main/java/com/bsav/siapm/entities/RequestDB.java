@@ -25,7 +25,7 @@ public class RequestDB implements Serializable {
     @Id
     @Basic(optional = false)
     @Column(name = ID)
-    private Integer id;
+    private String id;
 
     @Column(name = NAME)
     private String name;
@@ -51,11 +51,26 @@ public class RequestDB implements Serializable {
     @Column(name = RECEIPT)
     private String receipt;
 
-    public Integer getId() {
+    public RequestDB() {
+    }
+
+    public RequestDB(String id, String name, String surname, String document, String email, Boolean graduate, String code, String certificate, String receipt) {
+        this.id = id;
+        this.name = name;
+        this.surname = surname;
+        this.document = document;
+        this.email = email;
+        this.graduate = graduate;
+        this.code = code;
+        this.certificate = certificate;
+        this.receipt = receipt;
+    }
+
+    public String getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(String id) {
         this.id = id;
     }
 

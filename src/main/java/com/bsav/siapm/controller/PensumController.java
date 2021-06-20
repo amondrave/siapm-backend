@@ -19,21 +19,21 @@ public class PensumController {
     private PensumService pensumService;
 
     @GetMapping("/active")
-    public ResponseEntity getPensum() {
+    public ResponseEntity<?> getPensum() {
         try {
-            return new ResponseEntity(pensumService.getActivePensum(), HttpStatus.OK);
+            return new ResponseEntity<>(pensumService.getActivePensum(), HttpStatus.OK);
         } catch (SiapmException e) {
-            return new ResponseEntity(e.getReturnMessage(), HttpStatus.OK);
+            return new ResponseEntity<>(e.getReturnMessage(), HttpStatus.OK);
         }
     }
 
     @PostMapping("/add")
-    public ResponseEntity addPensum(@RequestBody Pensum pensum) {
+    public ResponseEntity<?> addPensum(@RequestBody Pensum pensum) {
         try {
             pensumService.addPensum(pensum);
-            return new ResponseEntity(pensum, HttpStatus.OK);
+            return new ResponseEntity<>(pensum, HttpStatus.OK);
         } catch (SiapmException e) {
-            return new ResponseEntity(e.getReturnMessage(), HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(e.getReturnMessage(), HttpStatus.BAD_REQUEST);
         }
     }
 

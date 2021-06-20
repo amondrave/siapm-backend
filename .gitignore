@@ -29,3 +29,6 @@ target/
 .settings/
 .classpath
 .project
+
+#Uploaded files
+upload/
