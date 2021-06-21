@@ -25,7 +25,7 @@ public class RoleDB implements Serializable {
 
     @Enumerated(EnumType.STRING)
     @Column(name = ROLE)
-    private Constants.ERole role;
+    private Constants.Role role;
 
     @OneToMany(mappedBy = UserDB.ROLE)
     private List<UserDB> userList;
@@ -38,11 +38,11 @@ public class RoleDB implements Serializable {
         this.id = id;
     }
 
-    public Constants.ERole getRole() {
+    public Constants.Role getRole() {
         return role;
     }
 
-    public void setRole(Constants.ERole role) {
+    public void setRole(Constants.Role role) {
         this.role = role;
     }
 

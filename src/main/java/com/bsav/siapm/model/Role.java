@@ -8,5 +8,5 @@ import lombok.Data;
 @AllArgsConstructor
 public class Role {
     private Integer id;
-    private Constants.ERole role;
+    private Constants.Role role;
 }

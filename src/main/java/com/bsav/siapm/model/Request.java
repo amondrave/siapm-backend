@@ -1,5 +1,6 @@
 package com.bsav.siapm.model;
 
+import com.bsav.siapm.utils.Constants;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -24,4 +25,5 @@ public class Request {
     private String code;
     private String certificate;
     private String receipt;
+    private Constants.Status status;
 }

@@ -1,5 +1,7 @@
 package com.bsav.siapm.entities;
 
+import com.bsav.siapm.utils.Constants;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
@@ -19,6 +21,7 @@ public class RequestDB implements Serializable {
     public static final String CODE = "code";
     public static final String CERTIFICATE = "certificate";
     public static final String RECEIPT = "receipt";
+    public static final String STATUS = "status";
 
     private static final long serialVersionUID = 1L;
 
@@ -51,10 +54,14 @@ public class RequestDB implements Serializable {
     @Column(name = RECEIPT)
     private String receipt;
 
+    @Enumerated(EnumType.STRING)
+    @Column(name = STATUS)
+    private Constants.Status status;
+
     public RequestDB() {
     }
 
-    public RequestDB(String id, String name, String surname, String document, String email, Boolean graduate, String code, String certificate, String receipt) {
+    public RequestDB(String id, String name, String surname, String document, String email, Boolean graduate, String code, String certificate, String receipt, Constants.Status status) {
         this.id = id;
         this.name = name;
         this.surname = surname;
@@ -64,6 +71,7 @@ public class RequestDB implements Serializable {
         this.code = code;
         this.certificate = certificate;
         this.receipt = receipt;
+        this.status = status;
     }
 
     public String getId() {
@@ -136,5 +144,13 @@ public class RequestDB implements Serializable {
 
     public void setReceipt(String receipt) {
         this.receipt = receipt;
+    }
+
+    public Constants.Status getStatus() {
+        return status;
+    }
+
+    public void setStatus(Constants.Status status) {
+        this.status = status;
     }
 }

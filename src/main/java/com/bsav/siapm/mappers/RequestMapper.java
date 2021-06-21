@@ -15,7 +15,8 @@ public class RequestMapper {
                 requestDB.getGraduate(),
                 requestDB.getCode(),
                 requestDB.getCertificate(),
-                requestDB.getReceipt()
+                requestDB.getReceipt(),
+                requestDB.getStatus()
         );
     }
 
@@ -29,7 +30,8 @@ public class RequestMapper {
                 request.getGraduate(),
                 request.getCode(),
                 request.getCertificate(),
-                request.getReceipt()
+                request.getReceipt(),
+                request.getStatus()
         );
     }
 }

@@ -5,7 +5,6 @@ import com.bsav.siapm.controller.request.SignUpRequest;
 import com.bsav.siapm.controller.responses.JwtResponse;
 import com.bsav.siapm.entities.RoleDB;
 import com.bsav.siapm.entities.UserDB;
-import com.bsav.siapm.model.User;
 import com.bsav.siapm.repository.RoleRepository;
 import com.bsav.siapm.repository.UserRepository;
 import com.bsav.siapm.security.AuthenticationUtil;
@@ -17,7 +16,6 @@ import com.bsav.siapm.utils.ReturnMessage;
 import com.bsav.siapm.utils.SiapmException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -97,7 +95,7 @@ public class AuthServiceImpl implements AuthService {
         user.setCreateTime(new Date(System.currentTimeMillis()));
         user.setActive(signUpRequest.isActive());
         user.setCode(signUpRequest.getCode());
-        RoleDB role = roleRepository.findByRole(Constants.ERole.ROLE_PROFESSOR)
+        RoleDB role = roleRepository.findByRole(Constants.Role.ROLE_PROFESSOR)
                 .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
         user.setRole(role);
 

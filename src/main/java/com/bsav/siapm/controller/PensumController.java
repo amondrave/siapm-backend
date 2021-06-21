@@ -23,7 +23,7 @@ public class PensumController {
         try {
             return new ResponseEntity<>(pensumService.getActivePensum(), HttpStatus.OK);
         } catch (SiapmException e) {
-            return new ResponseEntity<>(e.getReturnMessage(), HttpStatus.OK);
+            return new ResponseEntity<>(e.getReturnMessage(), HttpStatus.BAD_REQUEST);
         }
     }
 
@@ -32,6 +32,15 @@ public class PensumController {
         try {
             pensumService.addPensum(pensum);
             return new ResponseEntity<>(pensum, HttpStatus.OK);
+        } catch (SiapmException e) {
+            return new ResponseEntity<>(e.getReturnMessage(), HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    @GetMapping("/all")
+    public ResponseEntity<?> getAllPensums() {
+        try {
+            return new ResponseEntity<>(pensumService.getAllPensums(), HttpStatus.OK);
         } catch (SiapmException e) {
             return new ResponseEntity<>(e.getReturnMessage(), HttpStatus.BAD_REQUEST);
         }

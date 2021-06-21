@@ -2,6 +2,7 @@ package com.bsav.siapm.service.impl;
 
 import com.bsav.siapm.entities.PensumDB;
 import com.bsav.siapm.mappers.PensumMapper;
+import com.bsav.siapm.mappers.RequestMapper;
 import com.bsav.siapm.model.Pensum;
 import com.bsav.siapm.repository.PensumRepository;
 import com.bsav.siapm.service.interfaces.PensumService;
@@ -14,6 +15,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service("pensumService")
 public class PensumServiceImpl implements PensumService {
@@ -50,10 +52,21 @@ public class PensumServiceImpl implements PensumService {
         try{
             if (!pensumRepository.existsById(pensum.getCode())){
                 pensumRepository.save(PensumMapper.toEntity(pensum));
+            } else {
+                throw new SiapmException(new Exception(), new ReturnMessage(HttpStatus.BAD_REQUEST.value(), "Este pensum ya existe"));
             }
         } catch (Exception e){
             throw new SiapmException(e, new ReturnMessage(HttpStatus.BAD_REQUEST.value(), e.getMessage()));
         }
 
+    }
+
+    @Override
+    public List<Pensum> getAllPensums() throws SiapmException {
+        try {
+            return pensumRepository.findAll().stream().map(PensumMapper::toModel).collect(Collectors.toList());
+        } catch (Exception e) {
+            throw new SiapmException(e, new ReturnMessage(HttpStatus.BAD_REQUEST.value(), "Ha ocurrido un error obteniendo los pensum"));
+        }
     }
 }

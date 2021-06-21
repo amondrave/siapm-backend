@@ -15,6 +15,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.List;
+
 import static org.springframework.web.bind.annotation.RequestMethod.*;
 
 @RestController
@@ -30,7 +32,7 @@ public class RequestController {
     private RequestService requestService;
 
     @PostMapping
-    public ResponseEntity<?> getRequest(
+    public ResponseEntity<?> saveRequest(
             @RequestParam("receipt") MultipartFile receipt,
             @RequestParam("certificate") MultipartFile certificate,
             @RequestParam("data") String request
@@ -60,12 +62,16 @@ public class RequestController {
         return new ResponseEntity<>(new ReturnMessage(200, "La operación finalizó satisfactoriamente"), HttpStatus.OK);
     }
 
-    @GetMapping("/files/{filename:.+}")
-    @ResponseBody
-    public ResponseEntity<Resource> serveFile(@PathVariable String filename) {
-
-        Resource file = storageService.loadAsResource(filename);
-        return ResponseEntity.ok().header(HttpHeaders.CONTENT_DISPOSITION,
-                "attachment; filename=\"" + file.getFilename() + "\"").body(file);
+    @GetMapping
+    public ResponseEntity<?> getAllRequests() {
+        List<Request> requests;
+        try {
+            requests = requestService.getAllRequests();
+        } catch (SiapmException e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+        }
+        return new ResponseEntity<>(requests, HttpStatus.OK);
     }
+
+
 }

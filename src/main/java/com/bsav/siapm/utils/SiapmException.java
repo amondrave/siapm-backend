@@ -13,7 +13,6 @@ public final class SiapmException extends Exception {
 
     public SiapmException(final ReturnMessage msg) {
         super(msg.toString());
-        assert msg != null : nullMessage;
         message = msg;
     }
 

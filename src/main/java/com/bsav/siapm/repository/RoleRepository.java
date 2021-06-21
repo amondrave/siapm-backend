@@ -11,6 +11,6 @@ import java.util.Optional;
 @Repository("roleRepository")
 public interface RoleRepository extends JpaRepository<RoleDB, Serializable> {
 
-    Optional<RoleDB> findByRole(Constants.ERole role);
+    Optional<RoleDB> findByRole(Constants.Role role);
 
 }
