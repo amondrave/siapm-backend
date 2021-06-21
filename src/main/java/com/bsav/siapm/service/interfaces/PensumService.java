@@ -9,6 +9,8 @@ public interface PensumService {
 
     Pensum getActivePensum() throws SiapmException;
 
+    Pensum getPensum(String code) throws SiapmException;
+
     void addPensum(Pensum pensum) throws SiapmException;
 
     List<Pensum> getAllPensums() throws SiapmException;

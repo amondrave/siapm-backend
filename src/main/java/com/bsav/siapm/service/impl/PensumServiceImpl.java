@@ -2,7 +2,6 @@ package com.bsav.siapm.service.impl;
 
 import com.bsav.siapm.entities.PensumDB;
 import com.bsav.siapm.mappers.PensumMapper;
-import com.bsav.siapm.mappers.RequestMapper;
 import com.bsav.siapm.model.Pensum;
 import com.bsav.siapm.repository.PensumRepository;
 import com.bsav.siapm.service.interfaces.PensumService;
@@ -44,6 +43,15 @@ public class PensumServiceImpl implements PensumService {
         }
 
         return pensums.get(0);
+    }
+
+    @Override
+    public Pensum getPensum(String code) throws SiapmException {
+        try {
+            return PensumMapper.toModel(pensumRepository.findByCode(code));
+        } catch (Exception e) {
+            throw new SiapmException(e, new ReturnMessage(HttpStatus.BAD_REQUEST.value(), "Ha ocurrido un error obteniendo el pensum"));
+        }
     }
 
     @Override

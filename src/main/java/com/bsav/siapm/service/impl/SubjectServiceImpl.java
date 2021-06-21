@@ -4,11 +4,9 @@ import com.bsav.siapm.controller.request.SubjectRequest;
 import com.bsav.siapm.entities.MicrocurriculumDB;
 import com.bsav.siapm.entities.PensumDB;
 import com.bsav.siapm.entities.SubjectDB;
-import com.bsav.siapm.mappers.RequestMapper;
 import com.bsav.siapm.mappers.SubjectRequestMapper;
 import com.bsav.siapm.repository.MicrocurriculumRepository;
 import com.bsav.siapm.repository.PensumRepository;
-import com.bsav.siapm.repository.RequestRepository;
 import com.bsav.siapm.repository.SubjectRepository;
 import com.bsav.siapm.service.interfaces.SubjectService;
 import com.bsav.siapm.utils.ReturnMessage;
@@ -39,7 +37,7 @@ public class SubjectServiceImpl implements SubjectService {
             if (!subjectRepository.existsByCode(subjectRequest.getCode())) {
                 SubjectDB subjectDB = SubjectRequestMapper.getSubjectDBfromSubjectRequest(subjectRequest);
                 MicrocurriculumDB microcurriculumDB = SubjectRequestMapper.getMicrocurriculumDBfromSubjectRequest(subjectRequest);
-                PensumDB pensumDB = pensumRepository.getByCode(pensumCode);
+                PensumDB pensumDB = pensumRepository.findByCode(pensumCode);
 
                 subjectDB.setPensum(pensumDB);
                 microcurriculumDB.setSubject(subjectDB);

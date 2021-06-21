@@ -27,6 +27,15 @@ public class PensumController {
         }
     }
 
+    @GetMapping("/{code}")
+    public ResponseEntity<?> getPensumByCode(@PathVariable String code) {
+        try {
+            return new ResponseEntity<>(pensumService.getPensum(code), HttpStatus.OK);
+        } catch (SiapmException e) {
+            return new ResponseEntity<>(e.getReturnMessage(), HttpStatus.BAD_REQUEST);
+        }
+    }
+
     @PostMapping("/add")
     public ResponseEntity<?> addPensum(@RequestBody Pensum pensum) {
         try {
