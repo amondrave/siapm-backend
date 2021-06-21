@@ -1,9 +1,11 @@
 package com.bsav.siapm.service.impl;
 
+import com.bsav.siapm.entities.RequestDB;
 import com.bsav.siapm.mappers.RequestMapper;
 import com.bsav.siapm.model.Request;
 import com.bsav.siapm.repository.RequestRepository;
 import com.bsav.siapm.service.interfaces.RequestService;
+import com.bsav.siapm.utils.Constants;
 import com.bsav.siapm.utils.ReturnMessage;
 import com.bsav.siapm.utils.SiapmException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +14,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service("requestService")
@@ -37,6 +40,23 @@ public class RequestServiceImpl implements RequestService {
     public List<Request> getAllRequests() throws SiapmException {
         try {
             return requestRepository.findAll().stream().map(RequestMapper::toModel).collect(Collectors.toList());
+        } catch (Exception e) {
+            throw new SiapmException(e, new ReturnMessage(HttpStatus.BAD_REQUEST.value(), "Error obteniendo las solicitudes"));
+        }
+    }
+
+    @Override
+    public void changeStatus(String requestId, Constants.Status status) throws SiapmException {
+        try {
+            Optional<RequestDB> requestDB = requestRepository.findById(requestId);
+
+            if (requestDB.isPresent()){
+                requestDB.get().setStatus(status);
+                requestRepository.save(requestDB.get());
+            } else {
+                throw new SiapmException(new ReturnMessage(HttpStatus.BAD_REQUEST.value(), "Esta solicitud no existe"));
+            }
+
         } catch (Exception e) {
             throw new SiapmException(e, new ReturnMessage(HttpStatus.BAD_REQUEST.value(), "Error obteniendo las solicitudes"));
         }

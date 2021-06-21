@@ -6,7 +6,7 @@ import lombok.Data;
 @Data
 @AllArgsConstructor
 public class Microcurriculum {
-    private Integer id;
+    private String id;
     private String content;
     private String bibliography;
     private String document;

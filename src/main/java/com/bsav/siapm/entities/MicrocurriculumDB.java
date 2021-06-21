@@ -23,7 +23,7 @@ public class MicrocurriculumDB implements Serializable {
     @Id
     @Basic(optional = false)
     @Column(name = ID)
-    private Integer id;
+    private String id;
 
     @Column(name = CONTENT)
     private String content;
@@ -39,15 +39,25 @@ public class MicrocurriculumDB implements Serializable {
     @ManyToOne
     private SubjectDB subject;
 
+    public MicrocurriculumDB() {
+    }
+
+    public MicrocurriculumDB(String id, String content, String bibliography, String document) {
+        this.id = id;
+        this.content = content;
+        this.bibliography = bibliography;
+        this.document = document;
+    }
+
     public static String getID() {
         return ID;
     }
 
-    public Integer getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(String id) {
         this.id = id;
     }
 

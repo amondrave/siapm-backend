@@ -3,13 +3,12 @@ package com.bsav.siapm.controller;
 import com.bsav.siapm.model.Request;
 import com.bsav.siapm.service.interfaces.RequestService;
 import com.bsav.siapm.storage.StorageService;
+import com.bsav.siapm.utils.Constants;
 import com.bsav.siapm.utils.ReturnMessage;
 import com.bsav.siapm.utils.SiapmException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.core.io.Resource;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -71,6 +70,16 @@ public class RequestController {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
         }
         return new ResponseEntity<>(requests, HttpStatus.OK);
+    }
+
+    @PostMapping("/deny/{requestId}")
+    public ResponseEntity<?> denyRequest(@PathVariable String requestId){
+        try {
+            requestService.changeStatus(requestId, Constants.Status.RECHAZADO);
+        } catch (SiapmException e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+        }
+        return new ResponseEntity<>(Void.TYPE, HttpStatus.OK);
     }
 
 

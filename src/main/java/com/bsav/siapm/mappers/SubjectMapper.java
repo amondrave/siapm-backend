@@ -34,7 +34,7 @@ public class SubjectMapper {
 
     private static List<Microcurriculum> mapMicrocurriculums(List<MicrocurriculumDB> microcurriculums) {
         List<Microcurriculum> ms = new ArrayList<>();
-        //microcurriculums.forEach(m -> ms.add(MicrocurriculumMapper.toEntity(m)));
+        microcurriculums.forEach(m -> ms.add(MicrocurriculumMapper.toModel(m)));
         return ms;
     }
 }

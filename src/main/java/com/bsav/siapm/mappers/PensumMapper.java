@@ -22,7 +22,7 @@ public class PensumMapper {
     }
 
     private static List<Semester> getSemesters(PensumDB pensumDB) {
-        Semester[] semesters = new Semester[10];
+        Semester[] semesters = new Semester[11];
         pensumDB.getSubjects().forEach(
                 subject -> {
                     int valor = subject.getSemester();

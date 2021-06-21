@@ -58,6 +58,16 @@ public class SubjectDB implements Serializable {
     @OneToMany(mappedBy = GroupDB.ID)
     private List<GroupDB> groups;
 
+    public SubjectDB() {
+    }
+
+    public SubjectDB(String code, String name, Integer semester, Integer credits) {
+        this.code = code;
+        this.name = name;
+        this.semester = semester;
+        this.credits = credits;
+    }
+
     public String getCode() {
         return code;
     }

@@ -12,4 +12,5 @@ public interface PensumRepository extends JpaRepository<PensumDB, Serializable> 
 
     List<PensumDB> findByActiveTrue();
 
+    PensumDB getByCode(String code);
 }

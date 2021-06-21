@@ -53,7 +53,7 @@ public class PensumServiceImpl implements PensumService {
             if (!pensumRepository.existsById(pensum.getCode())){
                 pensumRepository.save(PensumMapper.toEntity(pensum));
             } else {
-                throw new SiapmException(new Exception(), new ReturnMessage(HttpStatus.BAD_REQUEST.value(), "Este pensum ya existe"));
+                throw new SiapmException(new ReturnMessage(HttpStatus.BAD_REQUEST.value(), "Este pensum ya existe"));
             }
         } catch (Exception e){
             throw new SiapmException(e, new ReturnMessage(HttpStatus.BAD_REQUEST.value(), e.getMessage()));
